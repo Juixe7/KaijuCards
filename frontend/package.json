@@ -1,0 +1,25 @@
+{
+  "name": "meta-clash-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "framer-motion": "^7.6.16",
+    "lodash": "^4.17.21",
+    "lowdb": "^5.0.0",
+    "nanoid": "^5.1.6",
+    "next": "^14.2.15",
+    "node-fetch": "^3.3.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.4.7"
+  }
+}

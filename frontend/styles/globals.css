@@ -1,0 +1,363 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: #0f172a; 
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-image: radial-gradient(circle at 50% 0, #581c87 0%, #0f172a 60%, #020617 100%);
+  cursor: url('/retro-cursor.png?v=3') 2 2, auto !important;
+}
+
+a, button, input {
+  cursor: inherit !important;
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.glass-input {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: white;
+  transition: all 0.3s ease;
+}
+.glass-input:focus {
+  border-color: #a855f7; /* Purple focus */
+  background: rgba(0, 0, 0, 0.6);
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.1);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #7c3aed 0%, #c026d3 100%); /* Purple/Pink */
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+  color: white;
+}
+.btn-primary:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 8px 25px rgba(124, 58, 237, 0.5);
+}
+
+/* Premium Background - full-screen positioned gradient */
+.bg-premium {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image: radial-gradient(circle at 50% 0%, #581c87 0%, #0f172a 60%, #020617 100%);
+  pointer-events: none;
+}
+
+/* Floating Background Orbs */
+.bg-orb {
+  position: fixed;
+  z-index: -1;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+  animation: orb-float 8s ease-in-out infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+@keyframes orb-float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-30px) scale(1.05); }
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Synthwave Background Container */
+.bg-synthwave {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-color: #050510;
+  overflow: hidden;
+}
+
+/* Starry Sky / Space */
+.bg-synthwave::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 50% 20%, rgba(138, 43, 226, 0.4) 0%, transparent 50%),
+    radial-gradient(circle at 80% 10%, rgba(255, 20, 147, 0.3) 0%, transparent 40%);
+  z-index: 1;
+}
+
+/* Stars */
+@keyframes starTwinkle {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+.synthwave-stars {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 40%;
+  background-image: 
+    radial-gradient(1.5px 1.5px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 40px 70px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 50px 160px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 90px 40px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 130px 80px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 160px 120px, #ffffff, rgba(0,0,0,0));
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  z-index: 2;
+  animation: starTwinkle 4s ease-in-out infinite;
+  mask-image: radial-gradient(circle 300px at var(--mouse-x, -1000px) var(--mouse-y, -1000px), rgba(0,0,0,1) 0%, rgba(0,0,0,0.3) 100%);
+  -webkit-mask-image: radial-gradient(circle 300px at var(--mouse-x, -1000px) var(--mouse-y, -1000px), rgba(0,0,0,1) 0%, rgba(0,0,0,0.3) 100%);
+}
+
+/* Shooting Stars */
+.shooting-stars {
+  position: absolute;
+  top: 0; left: 0; width: 100%; bottom: 40%;
+  overflow: hidden;
+  z-index: 2;
+  pointer-events: none;
+}
+.shooting-stars span {
+  position: absolute;
+  width: 150px;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, transparent 100%);
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 20, 147, 0.5);
+  animation: shoot 10s linear infinite;
+  opacity: 0;
+  transform-origin: left center;
+  will-change: transform, opacity;
+}
+.shooting-stars span:nth-child(1) { top: 10%; left: 20%; animation-delay: 0s; animation-duration: 9s; }
+.shooting-stars span:nth-child(2) { top: 25%; left: 80%; animation-delay: 2s; animation-duration: 12s; }
+.shooting-stars span:nth-child(3) { top: 40%; left: 40%; animation-delay: 4.5s; animation-duration: 15s; }
+.shooting-stars span:nth-child(4) { top: 15%; left: 90%; animation-delay: 7s; animation-duration: 11s; }
+.shooting-stars span:nth-child(5) { top: 5%; left: 60%; animation-delay: 9s; animation-duration: 14s; }
+
+@keyframes shoot {
+  0% { transform: rotate(-45deg) translateX(0); opacity: 0; }
+  5% { opacity: 1; }
+  35% { transform: rotate(-45deg) translateX(-800px); opacity: 0; }
+  100% { transform: rotate(-45deg) translateX(-800px); opacity: 0; }
+}
+
+/* The Grid */
+.synthwave-grid {
+  position: absolute;
+  bottom: 0;
+  left: -50%;
+  width: 200%;
+  height: 40%;
+  background-image: 
+    linear-gradient(rgba(200, 50, 255, 0.6) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200, 50, 255, 0.6) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: center bottom;
+  transform: perspective(300px) rotateX(70deg);
+  transform-origin: top;
+  z-index: 3;
+  animation: gridMove 2s linear infinite;
+}
+
+@keyframes gridMove {
+  0% { background-position: center 0; }
+  100% { background-position: center 40px; }
+}
+
+/* Glowing Horizon Line */
+.synthwave-horizon {
+  position: absolute;
+  bottom: 40%;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #fff;
+  box-shadow: 0 0 10px 2px #d946ef, 0 0 25px 5px #a855f7;
+  z-index: 4;
+}
+
+/* Sun / Glow anchored behind the right-side console */
+.synthwave-sun {
+  position: absolute;
+  bottom: 40%;
+  right: 25vw;
+  transform: translateX(50%) translateY(50%);
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, rgba(255,20,147,0.4) 20%, rgba(138,43,226,0.2) 50%, transparent 70%);
+  z-index: 3;
+}
+
+/* === GAME ARENA EFFECTS === */
+
+/* Dark Atmospheric Background */
+.bg-arena {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, #1e1b4b 0%, #020617 80%);
+  z-index: 0;
+}
+
+/* Hex Grid Background */
+.hex-grid {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='103.923' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 103.923L0 86.603V51.962l30-17.32 30 17.32v34.641z' fill-opacity='0' stroke='%234f46e5' stroke-width='1.5' stroke-opacity='0.2'/%3E%3Cpath d='M30 51.962L0 34.641V0l30-17.32 30 17.32v34.641z' fill-opacity='0' stroke='%234f46e5' stroke-width='1.5' stroke-opacity='0.2'/%3E%3C/svg%3E");
+  background-size: 60px 103.923px;
+  animation: hexMove 20s linear infinite;
+  z-index: 1;
+  opacity: 0.25;
+}
+
+@keyframes hexMove {
+  from { background-position: 0 0; }
+  to { background-position: 60px 103.923px; }
+}
+
+/* Aura Pulse for Winning / Active Cards */
+.aura-pulse {
+  animation: auraPulse 3s ease-in-out infinite;
+}
+
+@keyframes auraPulse {
+  0%, 100% { box-shadow: 0 0 10px 2px rgba(59, 130, 246, 0.4), 0 0 20px 4px rgba(139, 92, 246, 0.2); }
+  50% { box-shadow: 0 0 15px 4px rgba(59, 130, 246, 0.6), 0 0 30px 8px rgba(139, 92, 246, 0.4); }
+}
+
+/* Energy Charge Button Effect */
+.energy-charge {
+  position: relative;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  box-shadow: inset 0 0 15px rgba(139, 92, 246, 0.2);
+  transition: all 0.2s;
+}
+
+.energy-charge::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent 0%, transparent 80%, rgba(168, 85, 247, 0.8) 100%);
+  animation: spinCharge 2s linear infinite;
+  z-index: -1;
+}
+
+.energy-charge::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.energy-charge:hover {
+  border-color: rgba(168, 85, 247, 0.6);
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.4), inset 0 0 10px rgba(168, 85, 247, 0.2);
+  transform: scale(1.05);
+}
+
+@keyframes spinCharge {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Dynamic Central Arena Zone */
+.arena-zone {
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  border-radius: 32px;
+  background: radial-gradient(circle at center, rgba(30, 27, 75, 0.5) 0%, transparent 80%);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.1), inset 0 0 50px rgba(168, 85, 247, 0.1);
+  backdrop-filter: blur(4px);
+}
+
+.arena-corner {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  box-shadow: 0 0 5px rgba(168, 85, 247, 0.2);
+}
+
+.arena-corner.top-left {
+  top: -1px; left: -1px;
+  border-right: none; border-bottom: none;
+  border-top-left-radius: 32px;
+}
+
+.arena-corner.top-right {
+  top: -1px; right: -1px;
+  border-left: none; border-bottom: none;
+  border-top-right-radius: 32px;
+}
+
+.arena-corner.bottom-left {
+  bottom: -1px; left: -1px;
+  border-right: none; border-top: none;
+  border-bottom-left-radius: 32px;
+}
+
+.arena-corner.bottom-right {
+  bottom: -1px; right: -1px;
+  border-left: none; border-top: none;
+  border-bottom-right-radius: 32px;
+}
+
+/* Retro Command Console Panel */
+.retro-panel {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(16px);
+  position: relative;
+  box-shadow: inset 0 0 0 1px rgba(168, 85, 247, 0.3), inset 0 0 40px rgba(168, 85, 247, 0.15), 0 20px 50px rgba(0,0,0,0.5);
+  clip-path: polygon(
+    32px 0, 100% 0, 100% calc(100% - 32px), calc(100% - 32px) 100%, 0 100%, 0 32px
+  );
+}
+
+.retro-panel::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.6) 2px, transparent 2px) 0 0,
+              linear-gradient(-45deg, rgba(168, 85, 247, 0.6) 2px, transparent 2px) 100% 100%;
+  background-size: 45px 45px;
+  background-repeat: no-repeat;
+}
