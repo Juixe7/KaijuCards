@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.22'
+
+    - name: Run Go Vet
+      run: go vet ./...
+
+    - name: Run Tests
+      run: go test -v -race ./...
+
+  build-backend:
+    needs: test-backend
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build Docker Image
+      run: docker build -t meta-clash-backend ./backend
+
+  build-frontend:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build Docker Image
+      run: docker build -t meta-clash-frontend ./frontend

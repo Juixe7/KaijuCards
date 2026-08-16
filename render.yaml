@@ -1,0 +1,40 @@
+services:
+  # Go Backend Service
+  - type: web
+    name: meta-clash-backend
+    env: docker
+    dockerContext: backend
+    dockerfilePath: backend/Dockerfile
+    plan: free
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: DATABASE_URL
+        fromDatabase:
+          name: meta-clash-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JIKAN_BASE_URL
+        value: https://api.jikan.moe/v4
+      - key: ALLOWED_ORIGIN
+        value: https://meta-clash-frontend.onrender.com
+      - key: GEMINI_API_KEY
+        sync: false
+
+  # Next.js Frontend Service
+  - type: web
+    name: meta-clash-frontend
+    env: docker
+    dockerContext: frontend
+    dockerfilePath: frontend/Dockerfile
+    plan: free
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        value: https://meta-clash-backend.onrender.com
+      - key: NEXT_PUBLIC_WS_URL
+        value: wss://meta-clash-backend.onrender.com/api/ws
+
+databases:
+  - name: meta-clash-db
+    plan: free
