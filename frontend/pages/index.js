@@ -8,6 +8,7 @@ import UniverseForge from '../components/UniverseForge';
 export default function Home() {
   const router = useRouter();
   const [lobby, setLobby] = useState(null);
+  const [joinCode, setJoinCode] = useState('');
   const [name, setName] = useState('');
   const [theme, setTheme] = useState('One Piece');
   const [loadingGame, setLoadingGame] = useState(false);
@@ -30,7 +31,6 @@ export default function Home() {
     "Lore: Across the multiverse, champions rise and fall. Will you be a legend?",
     "Rule #2: Winning rounds deals damage to your opponent. Drain their health to claim victory!"
   ];
-
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -64,14 +64,42 @@ export default function Home() {
   useEffect(() => { if (typeof window !== 'undefined') localStorage.setItem('lastPlayerName', name); }, [name]);
   useEffect(() => { if (typeof window !== 'undefined') localStorage.setItem('lastTheme', theme); }, [theme]);
 
-  const create = () => wsClient.emit('createLobby', { name, theme }, res => { if (res.ok) setLobby(res.lobby); else alert("Error creating lobby: " + (res.err || "Unknown error")); });
-  const join = () => { if (!lobby?.id) return alert('Enter ID'); wsClient.emit('joinLobby', { lobbyId: lobby.id, name }, res => { if (res.ok) setLobby(res.lobby); else alert(res.err); }); };
-  const addBot = () => wsClient.emit('addBot', { lobbyId: lobby.id }, res => { if (res.ok) setLobby(res.lobby); });
-  const start = () => wsClient.emit('startGame', { lobbyId: lobby.id }, res => { if (!res.ok) alert(res.err); });
-  const setLobbyId = (id) => setLobby(l => ({ ...l, id: id }));
+  const create = () => wsClient.emit('createLobby', { name, theme }, res => {
+    if (res.ok) {
+      setLobby(res.lobby);
+    } else {
+      alert("Error creating lobby: " + (res.err || "Unknown error"));
+    }
+  });
 
-  const players = lobby ? lobby.players : [];
-  const emptySlots = Array(4 - players.length).fill(null);
+  const join = () => {
+    const code = joinCode.trim();
+    if (!code) return alert('Enter Lobby ID');
+    wsClient.emit('joinLobby', { lobbyId: code, name }, res => {
+      if (res.ok) {
+        setLobby(res.lobby);
+      } else {
+        alert(res.err || "Failed to join lobby");
+      }
+    });
+  };
+
+  const addBot = () => {
+    if (!lobby?.id) return;
+    wsClient.emit('addBot', { lobbyId: lobby.id }, res => {
+      if (res.ok) setLobby(res.lobby);
+    });
+  };
+
+  const start = () => {
+    if (!lobby?.id) return;
+    wsClient.emit('startGame', { lobbyId: lobby.id }, res => {
+      if (!res.ok) alert(res.err || "Failed to start game");
+    });
+  };
+
+  const players = (lobby && Array.isArray(lobby.players)) ? lobby.players : [];
+  const emptySlots = Array(Math.max(0, 4 - players.length)).fill(null);
 
   return (
     <div 
@@ -155,7 +183,7 @@ export default function Home() {
           <div className="space-y-3">
              <button onClick={create} disabled={!name || !theme || !!lobby?.id} className={`w-full p-4 rounded-xl font-bold text-lg tracking-widest uppercase transition-all duration-300 border ${!name || !theme || !!lobby?.id ? 'opacity-30 bg-slate-900 border-slate-700 text-slate-500' : 'bg-indigo-600/80 hover:bg-indigo-500 border-indigo-400 text-white shadow-[0_0_20px_rgba(79,70,229,0.4)]'}`}>Create Universe</button>
              <div className="flex gap-2 h-12">
-               <input value={lobby?.id || ''} onChange={e => setLobbyId(e.target.value.toUpperCase())} placeholder="LOBBY CODE" className="w-2/3 bg-black/60 px-3 rounded-xl text-center font-mono text-lg font-bold tracking-widest uppercase text-white border border-slate-700 focus:outline-none focus:border-blue-500" />
+               <input value={joinCode} onChange={e => setJoinCode(e.target.value.toUpperCase())} placeholder="LOBBY CODE" className="w-2/3 bg-black/60 px-3 rounded-xl text-center font-mono text-lg font-bold tracking-widest uppercase text-white border border-slate-700 focus:outline-none focus:border-blue-500" />
                <button onClick={join} className="w-1/3 bg-slate-800 hover:bg-slate-700 border border-slate-600 hover:border-slate-500 text-white rounded-xl text-xs font-bold tracking-wider transition-all uppercase">JOIN</button>
              </div>
           </div>
@@ -195,7 +223,7 @@ export default function Home() {
 
                <div className="flex flex-col gap-2 mt-4">
                  <button onClick={addBot} className="w-full py-3 bg-yellow-500/10 hover:bg-yellow-500/20 text-yellow-200 rounded-lg text-[10px] font-bold border border-yellow-500/30 uppercase tracking-widest transition-colors">+ Add Bot</button>
-                 <button onClick={start} disabled={lobby.players.length < 2} className="w-full py-4 bg-red-600/80 hover:bg-red-500 text-white rounded-lg text-xs font-bold border border-red-400 uppercase tracking-widest transition-all disabled:opacity-30 disabled:cursor-not-allowed shadow-[0_0_15px_rgba(220,38,38,0.3)]">Start Match</button>
+                 <button onClick={start} disabled={players.length < 2} className="w-full py-4 bg-red-600/80 hover:bg-red-500 text-white rounded-lg text-xs font-bold border border-red-400 uppercase tracking-widest transition-all disabled:opacity-30 disabled:cursor-not-allowed shadow-[0_0_15px_rgba(220,38,38,0.3)]">Start Match</button>
                </div>
             </motion.div>
           )}

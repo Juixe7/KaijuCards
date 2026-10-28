@@ -9,7 +9,12 @@ export const getApiUrl = () => {
 
 export const getWsUrl = () => {
   if (process.env.NEXT_PUBLIC_WS_URL) {
-    return process.env.NEXT_PUBLIC_WS_URL.replace(/\/+$/, '');
+    let wsUrl = process.env.NEXT_PUBLIC_WS_URL.replace(/\/+$/, '');
+    // If the URL is provided without an explicit socket path, append /api/ws
+    if (!wsUrl.endsWith('/api/ws') && !wsUrl.endsWith('/ws')) {
+      wsUrl += '/api/ws';
+    }
+    return wsUrl;
   }
   const apiUrl = getApiUrl().replace(/\/+$/, '');
   if (apiUrl.startsWith('https://')) {

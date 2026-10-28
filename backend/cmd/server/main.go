@@ -112,9 +112,11 @@ func main() {
 
 	// WebSocket endpoint (with optional auth for guest mode)
 	optAuth := auth.OptionalAuth(cfg.JWTSecret)
-	mux.Handle("GET /api/ws", optAuth(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	wsHandler := optAuth(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		ws.ServeWs(hub, wsHandlers, w, r)
-	})))
+}))
+	mux.Handle("GET /api/ws", wsHandler)
+	mux.Handle("GET /ws", wsHandler)
 
 	// Health check
 	mux.HandleFunc("GET /healthz", func(w http.ResponseWriter, r *http.Request) {
@@ -149,8 +151,12 @@ func main() {
 			return
 		}
 
-		// Fill with bots and start
-		l, err = debugManager.StartGame(l.ID)
+		l, err = debugManager.AddBot(l.ID)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	l, err = debugManager.StartGame(l.ID)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
