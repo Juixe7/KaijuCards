@@ -32,11 +32,11 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build Docker Image
-      run: docker build -t meta-clash-backend ./backend
+      run: docker build -t kaijucards-backend ./backend
 
   build-frontend:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
     - name: Build Docker Image
-      run: docker build -t meta-clash-frontend ./frontend
+      run: docker build -t kaijucards-frontend ./frontend
