@@ -65,7 +65,7 @@ Example: [{"name": "Character Name", "rank": 85, "strength": 80, "speed": 70, "i
 		return nil, fmt.Errorf("failed to marshal gemini request: %w", err)
 	}
 
-	apiURL := "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + apiKey
+	apiURL := "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=" + apiKey
 	req, err := http.NewRequestWithContext(ctx, "POST", apiURL, bytes.NewBuffer(b))
 	if err != nil {
 		return nil, fmt.Errorf("failed to create gemini request: %w", err)
