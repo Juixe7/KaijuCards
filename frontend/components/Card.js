@@ -63,7 +63,7 @@ export default function Card({ card, faceDown = false, selected = false, layoutI
             <div className="w-16 h-24 md:w-24 md:h-32 border-4 border-yellow-600/60 rotate-45 absolute" />
             <div className="w-16 h-24 md:w-24 md:h-32 border-4 border-yellow-600/60 -rotate-45 absolute" />
             <div className="w-10 h-10 md:w-16 md:h-16 bg-yellow-500/20 rounded-full blur-xl absolute" />
-            <h2 className="text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-br from-yellow-300 to-yellow-600 drop-shadow-lg z-10 tracking-widest text-center">META<br/>CLASH</h2>
+            <h2 className="text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-br from-yellow-300 to-yellow-600 drop-shadow-lg z-10 tracking-widest text-center">KAIJU<br/>CARDS</h2>
         </div>
       </div>
     </motion.div>

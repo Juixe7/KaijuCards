@@ -11,6 +11,8 @@ export default function Game() {
     // Animation State Machine
     // IDLE -> PLAYING_CARDS -> REVEALING -> EVALUATING -> SWEEPING -> IDLE
     const [animState, setAnimState] = useState('IDLE');
+    const animStateRef = useRef(animState);
+    animStateRef.current = animState;
     const [roundData, setRoundData] = useState(null);
 
     useEffect(() => {
@@ -21,7 +23,7 @@ export default function Game() {
         wsClient.connect();
 
         const onLobbyUpdate = l => { 
-            if (animState === 'IDLE') setLobby(l); 
+            if (animStateRef.current === 'IDLE') setLobby(l); 
         };
         const onGameStarted = l => { setLobby(l); };
         
@@ -57,7 +59,7 @@ export default function Game() {
             wsClient.off('roundResult', onRoundResult);
             wsClient.off('connect_error', onConnectError);
         };
-    }, [animState]);
+    }, []);
 
     // Animation Orchestrator
     useEffect(() => {
@@ -182,7 +184,7 @@ export default function Game() {
                 {/* Header */}
                 <header className="flex justify-between items-center p-4 z-20 absolute top-4 left-4 right-4 pointer-events-none">
                     <div className="flex items-center gap-4">
-                        <h1 className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">META CLASH</h1>
+                        <h1 className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">KAIJU CARDS</h1>
                         <span className="bg-white/5 px-3 py-1 rounded text-xs font-mono tracking-widest text-slate-400 border border-white/10">ROUND {lobby.round} / 6</span>
                     </div>
                     <div className="font-mono text-sm text-slate-500 bg-black/40 px-3 py-1 rounded-lg">ID: {lobby.id}</div>
@@ -231,14 +233,14 @@ export default function Game() {
                                     
                                     <div className="grid grid-cols-2 sm:flex sm:flex-row gap-2 md:gap-4 bg-black/50 p-3 md:p-4 rounded-2xl backdrop-blur-xl border border-white/5 shadow-2xl">
                                         {['rank', 'strength', 'speed', 'iq'].map(attr => (
-                                            <button
-                                                key={attr}
-                                                onClick={() => chooseAttr(attr)}
-                                                className="energy-charge px-4 py-2 md:px-6 md:py-3 rounded-xl text-white font-bold tracking-wider text-xs md:text-sm uppercase active:scale-95"
-                                            >
-                                                {attr}
-                                            </button>
-                                        ))}
+                                             <button
+                                                 key={attr}
+                                                 onClick={() => chooseAttr(attr)}
+                                                 className="energy-charge px-4 py-2 md:px-6 md:py-3 rounded-xl text-white font-bold tracking-wider text-xs md:text-sm uppercase active:scale-95"
+                                             >
+                                                 {attr}
+                                             </button>
+                                         ))}
                                     </div>
                                 </div>
                             )}

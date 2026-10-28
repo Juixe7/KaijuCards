@@ -24,9 +24,9 @@ export default function Home() {
 
   const facts = [
     "Rule #1: The highest attribute always wins the round. Choose your stats wisely.",
-    "Lore: The Meta Clash Engine weaves infinite universes from a single theme.",
+    "Lore: The KaijuCards Engine weaves infinite universes from a single theme.",
     "Pro Tip: Every universe has its own unique strengths. Adapt your strategy.",
-    "Did you know? Meta Clash generates unique, balanced cards on the fly using advanced AI.",
+    "Did you know? KaijuCards generates unique, balanced cards on the fly using advanced AI.",
     "Lore: Across the multiverse, champions rise and fall. Will you be a legend?",
     "Rule #2: Winning rounds deals damage to your opponent. Drain their health to claim victory!"
   ];
@@ -118,7 +118,7 @@ export default function Home() {
           <div className="flex flex-col gap-2 border-b border-indigo-500/20 pb-6">
             <div className="flex justify-between items-start">
               <h1 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 tracking-tight leading-none uppercase">
-                META<br/>CLASH
+                KAIJU<br/>CARDS
               </h1>
               <div className="flex flex-col items-end gap-2">
                 {isLoggedIn ? (

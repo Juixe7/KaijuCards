@@ -49,7 +49,7 @@ export default function Profile() {
       <div className="max-w-5xl mx-auto relative z-10">
         <header className="flex justify-between items-center mb-12">
           <h1 className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-fuchsia-400">
-            <a href="/">META CLASH</a>
+            <a href="/">KAIJU CARDS</a>
           </h1>
           <button onClick={handleLogout} className="px-6 py-2 rounded-full border border-red-500/30 text-red-400 hover:bg-red-500/10 font-bold tracking-widest text-sm transition-all">
             LOGOUT
