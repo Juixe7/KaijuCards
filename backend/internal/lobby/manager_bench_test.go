@@ -4,8 +4,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/nikhilsaxena04/meta_clash/backend/internal/game"
-	"github.com/nikhilsaxena04/meta_clash/backend/internal/models"
+	"github.com/Juixe7/KaijuCards/backend/internal/game"
+	"github.com/Juixe7/KaijuCards/backend/internal/models"
 )
 
 // BenchmarkCreateLobby measures lobby creation with deterministic card generation.

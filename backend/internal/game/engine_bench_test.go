@@ -3,7 +3,7 @@ package game
 import (
 	"testing"
 
-	"github.com/nikhilsaxena04/meta_clash/backend/internal/models"
+	"github.com/Juixe7/KaijuCards/backend/internal/models"
 )
 
 // setupLobby creates a ready-to-deal lobby with 4 players and a deterministic deck.

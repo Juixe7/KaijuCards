@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/gorilla/websocket"
-	"github.com/nikhilsaxena04/meta_clash/backend/internal/auth"
+	"github.com/Juixe7/KaijuCards/backend/internal/auth"
 )
 
 const (

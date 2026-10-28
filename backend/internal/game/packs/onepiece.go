@@ -2,7 +2,7 @@
 // the Jikan API is unavailable or unreliable.
 package packs
 
-import "github.com/nikhilsaxena04/meta_clash/backend/internal/models"
+import "github.com/Juixe7/KaijuCards/backend/internal/models"
 
 // OnePiece returns 24 hand-curated One Piece characters with lore-accurate stats.
 // Stats range 1-99: Rank (overall power level), Strength, Speed, IQ.

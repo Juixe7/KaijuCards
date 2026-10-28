@@ -3,7 +3,7 @@ package game
 import (
 	"testing"
 
-	"github.com/nikhilsaxena04/meta_clash/backend/internal/models"
+	"github.com/Juixe7/KaijuCards/backend/internal/models"
 )
 
 func TestEngine_Deal(t *testing.T) {

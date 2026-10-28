@@ -1,4 +1,4 @@
-module github.com/nikhilsaxena04/meta_clash/backend
+module github.com/Juixe7/KaijuCards/backend
 
 go 1.25.0
 

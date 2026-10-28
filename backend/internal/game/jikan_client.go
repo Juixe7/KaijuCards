@@ -12,7 +12,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/nikhilsaxena04/meta_clash/backend/internal/models"
+	"github.com/Juixe7/KaijuCards/backend/internal/models"
 )
 
 // JikanClient handles outbound requests to the Jikan API with an in-memory cache
@@ -275,7 +275,7 @@ Characters:
 	reqBody.GenerationConfig.ResponseMimeType = "application/json"
 
 	b, _ := json.Marshal(reqBody)
-	url := "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" + apiKey
+	url := "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + apiKey
 
 	req, err := http.NewRequestWithContext(ctx, "POST", url, bytes.NewBuffer(b))
 	if err != nil {

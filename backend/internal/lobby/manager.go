@@ -6,8 +6,8 @@ import (
 	"log/slog"
 	"time"
 
-	"github.com/nikhilsaxena04/meta_clash/backend/internal/game"
-	"github.com/nikhilsaxena04/meta_clash/backend/internal/models"
+	"github.com/Juixe7/KaijuCards/backend/internal/game"
+	"github.com/Juixe7/KaijuCards/backend/internal/models"
 )
 
 // Manager implements models.LobbyManager by orchestrating lobby lifecycle

@@ -12,14 +12,14 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/nikhilsaxena04/meta_clash/backend/internal/auth"
-	"github.com/nikhilsaxena04/meta_clash/backend/internal/config"
-	"github.com/nikhilsaxena04/meta_clash/backend/internal/db"
-	"github.com/nikhilsaxena04/meta_clash/backend/internal/game"
-	"github.com/nikhilsaxena04/meta_clash/backend/internal/lobby"
-	"github.com/nikhilsaxena04/meta_clash/backend/internal/middleware"
-	"github.com/nikhilsaxena04/meta_clash/backend/internal/models"
-	"github.com/nikhilsaxena04/meta_clash/backend/internal/ws"
+	"github.com/Juixe7/KaijuCards/backend/internal/auth"
+	"github.com/Juixe7/KaijuCards/backend/internal/config"
+	"github.com/Juixe7/KaijuCards/backend/internal/db"
+	"github.com/Juixe7/KaijuCards/backend/internal/game"
+	"github.com/Juixe7/KaijuCards/backend/internal/lobby"
+	"github.com/Juixe7/KaijuCards/backend/internal/middleware"
+	"github.com/Juixe7/KaijuCards/backend/internal/models"
+	"github.com/Juixe7/KaijuCards/backend/internal/ws"
 )
 
 func main() {

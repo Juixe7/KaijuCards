@@ -8,7 +8,7 @@ import (
 	"math/big"
 	"sync"
 
-	"github.com/nikhilsaxena04/meta_clash/backend/internal/models"
+	"github.com/Juixe7/KaijuCards/backend/internal/models"
 )
 
 // MemoryStore implements models.LobbyStore with a sync.RWMutex-protected map.

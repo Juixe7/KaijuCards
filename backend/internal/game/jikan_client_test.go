@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/nikhilsaxena04/meta_clash/backend/internal/models"
+	"github.com/Juixe7/KaijuCards/backend/internal/models"
 )
 
 func TestJikanClient_FetchDeck_Success(t *testing.T) {

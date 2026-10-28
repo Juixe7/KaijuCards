@@ -11,7 +11,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/nikhilsaxena04/meta_clash/backend/internal/models"
+	"github.com/Juixe7/KaijuCards/backend/internal/models"
 )
 
 // SuperheroClient fetches character data from the akabab/superhero-api,

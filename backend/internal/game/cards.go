@@ -10,8 +10,8 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/nikhilsaxena04/meta_clash/backend/internal/game/packs"
-	"github.com/nikhilsaxena04/meta_clash/backend/internal/models"
+	"github.com/Juixe7/KaijuCards/backend/internal/game/packs"
+	"github.com/Juixe7/KaijuCards/backend/internal/models"
 )
 
 // Generator implements models.CardGenerator with a 5-tier fallback chain:

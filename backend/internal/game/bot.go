@@ -1,6 +1,6 @@
 package game
 
-import "github.com/nikhilsaxena04/meta_clash/backend/internal/models"
+import "github.com/Juixe7/KaijuCards/backend/internal/models"
 
 // MaxStatBot implements models.BotStrategy by always choosing the attribute
 // where the card has the highest stat value. Simple but effective.

@@ -1,6 +1,6 @@
 package packs
 
-import "github.com/nikhilsaxena04/meta_clash/backend/internal/models"
+import "github.com/Juixe7/KaijuCards/backend/internal/models"
 
 // Pokemon returns 24 hand-curated Pokémon (gen 1-3 favorites) with balanced stats.
 // Stats range 1-99: Rank (overall tier), Strength (Atk), Speed, IQ (Sp.Atk/strategy).

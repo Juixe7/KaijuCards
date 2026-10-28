@@ -5,8 +5,8 @@ import (
 	"log/slog"
 	"time"
 
-	"github.com/nikhilsaxena04/meta_clash/backend/internal/game"
-	"github.com/nikhilsaxena04/meta_clash/backend/internal/models"
+	"github.com/Juixe7/KaijuCards/backend/internal/game"
+	"github.com/Juixe7/KaijuCards/backend/internal/models"
 )
 
 // Handlers binds the websocket actions to the lobby manager
@@ -201,9 +201,9 @@ func (h *Handlers) processBotTurns(lobby *models.Lobby, isContinuation bool) {
 
 		// Wait briefly so the frontend has time to show animations for the previous round
 		if isContinuation {
-			time.Sleep(15 * time.Second)
+			time.Sleep(3 * time.Second)
 		} else {
-			time.Sleep(4 * time.Second)
+			time.Sleep(2 * time.Second)
 		}
 		isContinuation = true
 
